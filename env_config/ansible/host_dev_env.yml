@@ -1,0 +1,18 @@
+---
+  - name: "Configure a development environment for embedded linux development"
+    hosts: localhost
+    connection: local
+
+    tasks:
+      - name: "Install Qemu machine emulator"
+        ansible.builtin.package:
+          name:
+            - qemu-system
+          state: latest
+      - name: "Install User Mode Linux (UML)"
+        # For using the command tunctl
+        # Creates a network interface connected to the emulated Qemu machine
+        ansible.builtin.package:
+          name:
+            - uml-utilities
+          state: latest
